@@ -13,14 +13,6 @@
 <p class="dashboard-foot">Data laporan bersifat pribadi. Hanya petugas resmi sekolah yang boleh mengakses. Jika ada keadaan mendesak, lakukan penanganan langsung di luar sistem ini.</p>
 </section>
 </main>
-<dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-title">
-  <div class="delete-dialog-header"><span class="danger-dot" aria-hidden="true">!</span><div><span class="eyebrow">KONFIRMASI PENGHAPUSAN</span><h2 id="delete-title">Hapus laporan?</h2></div></div>
-  <p>Ini akan <strong>menghapus permanen</strong> laporan <strong id="delete-id"></strong> beserta riwayat statusnya. Pelapor tidak dapat lagi mengecek ID ini. Tindakan tidak bisa dibatalkan.</p>
-  <label for="delete-confirm-input">Ketik ID laporan untuk konfirmasi</label>
-  <input id="delete-confirm-input" type="text" autocomplete="off" spellcheck="false" placeholder="RM-..."/>
-  <p class="feedback" id="delete-error" role="alert" hidden></p>
-  <div class="delete-buttons"><button type="button" class="button outline" id="delete-cancel">Batal</button><button type="button" class="button danger" id="delete-submit" disabled>Ya, Hapus Permanen</button></div>
-</dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <footer>© 2026 Ruang Aman • Dibuat untuk mendukung lingkungan sekolah yang aman.</footer>
 <script src="supabase-config.js"></script><script src="admin.js"></script>
