@@ -50,6 +50,7 @@ function sessionFromAuth(result){
   };
 }
 function switchView(mode){
+  if(mode==='startup' && window.RA_SKIP_BOOT)mode='login';
   $('startup-panel').hidden=mode!=='startup';
   $('login-panel').hidden=mode!=='login';
   $('dashboard').hidden=mode!=='dashboard';
@@ -263,17 +264,18 @@ async function activateSession(userId){
   await load();
 }
 async function start(){
-  if(!configured()){switchView('login');feedback('login-error','Layanan admin belum tersedia. Hubungi pengelola website.');return;}
+  if(!configured()){switchView('login');feedback('login-error','Layanan admin belum siap. Hubungi pengelola website.');return;}
+  if(window.RA_SKIP_BOOT){switchView('login');return;}
   session=loadStored();
   if(!session){switchView('login');return;}
   switchView('startup');
   const expected=authRevision;
   try{
     await getToken();
-    if(expected!==authRevision)return;
+    if(expected!==authRevision||window.RA_SKIP_BOOT)return;
     await activateSession(session.user_id);
   }catch(err){
-    if(expected!==authRevision)return;
+    if(expected!==authRevision||window.RA_SKIP_BOOT)return;
     if(authInvalid(err)||/akses pengelola/i.test(err.message))clearPrivateData('Akses akun tidak berlaku. Silakan login kembali.');
     else{switchView('login');feedback('login-error','Tidak dapat memulihkan sesi sekarang. Periksa koneksi lalu muat ulang halaman.');}
   }
@@ -315,5 +317,7 @@ window.addEventListener('storage',event=>{
 document.addEventListener('visibilitychange',()=>{
   if(!document.hidden&&session&&!$('dashboard').hidden&&session.expires_at-Date.now()/1000<120){getToken().catch(()=>{});}
 });
-start();
+try{start();}catch(err){
+  if(typeof window.RA_SHOW_LOGIN==='function')window.RA_SHOW_LOGIN('Gagal membuka halaman pengelola. Silakan masuk kembali.');
+}
 })();
