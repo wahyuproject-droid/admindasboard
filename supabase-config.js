@@ -1,0 +1,1 @@
+window.RA_ADMIN_CONFIG = { url: 'https://hfqxzbaemwjekmamotdq.supabase.co', publishableKey: 'sb_publishable_0-uwLZjGuaaunNvvcEP2JA_lZQ8Y2x5', adminEmail: 'yugapakpu@gmail.com', adminUsername: 'admin123' };

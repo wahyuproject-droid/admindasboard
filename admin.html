@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#281c14"/>
+<title>Dashboard Pengelola — Ruang Aman</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="admin.css"/></head>
+<body>
+<header class="top"><a class="brand" href="index.html"><span class="emblem">✦</span><span>ruang<b>aman.</b> <small>/ PENGELOLA</small></span></a><div class="top-right"><span class="top-badge">KELOMPOK 3 • XI PPLG 1</span><button class="button ghost" id="logout" type="button" hidden>Keluar</button></div></header>
+<main>
+<section id="startup-panel" class="login-area"><div class="login-card startup-card"><div class="logo-crest"><img src="gunungan.svg" alt=""/></div><p>Memeriksa sesi pengelola...</p></div></section><section id="login-panel" class="login-area" hidden><div class="login-card"><div class="logo-crest"><img src="gunungan.svg" alt="Gunungan wayang"/></div><div class="eyebrow">PANEL PENGELOLA</div><h1>Jaga setiap<br/><em>suara yang masuk.</em></h1><p>Masuk sebagai petugas yang mendapat izin mengelola laporan sekolah. Informasi pengaduan bersifat rahasia.</p><form id="login-form"><label for="username">Username</label><input id="username" name="username" value="admin123" autocomplete="username" required/><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan password admin"/><button class="button primary" type="submit" id="login-btn">Masuk ke Dashboard <span aria-hidden="true">↗</span></button><p class="feedback" id="login-error" role="alert" hidden></p></form><small class="privacy"><span>✧</span> Akses khusus petugas. Jangan bagikan password kepada siapa pun.</small></div></section>
+<section id="dashboard" class="dashboard" hidden>
+<div class="page-hero"><div><span class="eyebrow">RUANG AMAN • SWARA KABECIKAN</span><h1>Dashboard <em>Laporan.</em></h1><p>Terima, tinjau, dan tindak lanjuti laporan secara bertanggung jawab.</p></div><img src="gunungan.svg" alt=""/></div>
+<div class="stats" aria-label="Ringkasan status laporan"><article><small>JUMLAH DITEMUKAN</small><strong id="stat-total">0</strong><span>Data yang berhasil dimuat</span></article><article><small>DITERIMA</small><strong id="stat-new">0</strong><span>Menunggu peninjauan</span></article><article><small>DALAM PROSES</small><strong id="stat-review">0</strong><span>Ditinjau / ditindaklanjuti</span></article><article><small>SELESAI</small><strong id="stat-done">0</strong><span>Penanganan tercatat selesai</span></article></div>
+<div class="work"><section class="report-list-panel"><div class="work-head"><div><span class="eyebrow">PENGADUAN MASUK</span><h2>Daftar Laporan</h2></div><button id="refresh" class="button outline" type="button">↻ Muat Ulang</button></div><div class="controls"><label class="visually-hidden" for="search">Cari ID, lokasi, atau jenis</label><input id="search" placeholder="Cari ID, jenis, atau lokasi..." type="search"/><label class="visually-hidden" for="filter">Filter status</label><select id="filter"><option value="">Semua status</option><option>Diterima</option><option>Ditinjau</option><option>Ditindaklanjuti</option><option>Selesai</option></select></div><p id="list-message" class="feedback" role="status"></p><div id="report-list" class="reports" aria-live="polite"></div></section>
+<section id="detail" class="detail-panel"><div class="detail-empty"><span>✧</span><h2>Pilih laporan</h2><p>Klik salah satu laporan di sebelah kiri untuk melihat kronologi, status, dan tindakan.</p></div></section></div>
+<p class="dashboard-foot">Data laporan bersifat pribadi. Hanya petugas resmi sekolah yang boleh mengakses. Jika ada keadaan mendesak, lakukan penanganan langsung di luar sistem ini.</p>
+</section>
+</main>
+<dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-title">
+  <div class="delete-dialog-header"><span class="danger-dot" aria-hidden="true">!</span><div><span class="eyebrow">KONFIRMASI PENGHAPUSAN</span><h2 id="delete-title">Hapus laporan?</h2></div></div>
+  <p>Ini akan <strong>menghapus permanen</strong> laporan <strong id="delete-id"></strong> beserta riwayat statusnya. Pelapor tidak dapat lagi mengecek ID ini. Tindakan tidak bisa dibatalkan.</p>
+  <label for="delete-confirm-input">Ketik ID laporan untuk konfirmasi</label>
+  <input id="delete-confirm-input" type="text" autocomplete="off" spellcheck="false" placeholder="RM-..."/>
+  <p class="feedback" id="delete-error" role="alert" hidden></p>
+  <div class="delete-buttons"><button type="button" class="button outline" id="delete-cancel">Batal</button><button type="button" class="button danger" id="delete-submit" disabled>Ya, Hapus Permanen</button></div>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<footer>© 2026 Ruang Aman • Dibuat untuk mendukung lingkungan sekolah yang aman.</footer>
+<script src="supabase-config.js"></script><script src="admin.js"></script>
+</body></html>
